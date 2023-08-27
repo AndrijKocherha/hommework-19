@@ -1,0 +1,206 @@
+[class*="__container"] {
+	max-width: 1100px;
+	margin: 0px auto;
+	padding: 30px 15px;
+}
+body {
+	background-color: #000;
+	color: #fff;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+.title {
+	font-size: 25px;
+	font-weight: 500;
+}
+.text {
+	font-size: 16px;
+	line-height: 1.3;
+}
+.page__list {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+.page__item {
+}
+.page__link {
+	display: block;
+	font-size: 20px;
+	color: #fff;
+	background-color: #794f45;
+	padding: 7px;
+	text-align: center;
+}
+.page__link:visited {
+	background-color: #7a956b;
+}
+.task {
+	margin-bottom: 40px;
+	font-size: 20px;
+	line-height: 1.2;
+	color: #30eedb;
+}
+.example {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+td {
+	padding: 10px;
+	border: 1px solid #30eedb;
+}
+.example__click {
+	display: flex;
+	gap: 10px;
+}
+.cards {
+	display: flex;
+	gap: 30px;
+}
+.cards__card {
+}
+.card {
+	position: relative;
+	background-color: #c699f16c;
+	display: flex;
+	padding: 40px 5px;
+	flex: 0 1 33.333%;
+	flex-direction: column;
+	gap: 30px;
+}
+.card__banners {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+.banners__top {
+	background-color: #af8805;
+	padding: 3px;
+	text-align: center;
+	border-radius: 10px;
+	font-weight: 500;
+	margin-bottom: 4px;
+}
+.banners__top:last-child {
+	margin-bottom: 0;
+}
+.banners__action {
+	padding: 3px;
+	background-color: #e6258f;
+	border-radius: 10px;
+	font-weight: 500;
+	text-align: center;
+	margin-bottom: 4px;
+}
+.card__image {
+	position: relative;
+	padding-bottom: 67%;
+}
+.card__image img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	object-fit: cover;
+}
+.card__lable {
+	flex: 1 1 auto;
+}
+.card__prices {
+}
+.card__cur-price {
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+.card__cur-price:last-child {
+	margin-bottom: 0;
+}
+.card__ald-price {
+	color: red;
+	text-decoration: line-through;
+	text-decoration-color: #fff;
+}
+.lists {
+	display: flex;
+	gap: 100px;
+	flex: 1 1 auto;
+}
+.lists__list {
+	width: 20%;
+	display: inline-block;
+	padding: 30px 20px;
+	border: 1px solid #fff;
+	min-height: 200px;
+}
+.lists__list_all {
+}
+.lists__sportsmen {
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 7px;
+}
+
+.lists__sportsmen:last-child {
+	margin-bottom: 0;
+}
+.lists__list_competition {
+}
+.lists__sportsmen {
+}
+.sportsmen {
+	display: flex;
+	gap: 20px;
+}
+.sportsmen__name {
+}
+.sportsmen__image {
+}
+.sportsmen__image img {
+	width: 30px;
+	height: 20px;
+	cursor: pointer;
+}
+.snowflake {
+	position: absolute;
+	background-color: #ffffff;
+	border-radius: 50%;
+}
+body {
+	position: relative;
+}
+
+/*@keyframes falling {
+	0% {
+		top: 0;
+	}
+	100% {
+		top: 95%;
+	}
+}*/
+
+.snowflake {
+	position: absolute;
+	transition: top 8s linear;
+	animation: falling 5s linear infinite, returnTop 0s linear infinite;
+}
+/*.cockroach-body {
+	position: relative;
+	width: 500px;
+	height: 500px;
+}*/
+.cockroach-body__cockroach {
+	width: 30px;
+	height: 30px;
+	background-color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transition: all 2s ease;
+	transform: translate(-50%, -50%);
+}

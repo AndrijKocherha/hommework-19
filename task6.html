@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/nullstyle.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>task6</title>
+	</head>
+	<body>
+		<main class="page">
+			<div class="page__container">
+				<div class="task">
+					<div class="task__condition text">
+						7. Задача 1. Відобразити падаючий сніг. Сніжинка з’являється у верхній частині екрану (top =0) і з випадковою швидкістю рухається вниз (у setInterval
+						викликати метод, у якому додавати крок до top). Як тільки сніжинка досягає нижньої частини екрану (top&gt;maxTop) вона знову повинна з’явитись у верхній
+						частині екрану (top=0).
+					</div>
+				</div>
+			</div>
+		</main>
+		<script>
+			class Snow {
+				static keyFrames = new CSSStyleSheet()
+				static windHeight = window.innerHeight
+				constructor(snowflakeCoount, minSnowSize, maxSnowSize, minZindex, maxZindex, maxTop) {
+					this.snowflakeCoount = snowflakeCoount
+					this.minSnowSize = minSnowSize
+					this.maxSnowSize = maxSnowSize
+					this.minZindex = minZindex
+					this.maxZindex = maxZindex
+					this.maxTop = maxTop
+				}
+				getRandValue(minNum, maxNum) {
+					return minNum + Math.floor(Math.random() * (maxNum - minNum + 1))
+				}
+				createSow() {
+					while (this.snowflakeCoount !== 0) {
+						this.snowflakeCoount--
+						//if (this.snowflakeCoount === 0) clearInterval(intervalId)
+						this.newSnow = document.createElement("div")
+						this.newSnow.classList.add("snowflake")
+						let size = this.getRandValue(this.minSnowSize, this.maxSnowSize)
+						this.newSnow.style.cssText = `
+			               z-index: ${this.getRandValue(this.minZindex, this.maxZindex)};
+			               width: ${size}px;
+			               top: -10%;
+			               height: ${size}px;
+			               left: ${this.getRandValue(0, window.innerWidth) - 30}px;
+			               transition: top 8s linear;
+			               animation: falling ${this.getRandValue(4, 7)}s linear infinite;
+			               `
+
+						document.querySelector("body").prepend(this.newSnow)
+					}
+					let snows = document.querySelectorAll(".snowflake")
+					setInterval(() => {
+						snows.forEach((snow) => {
+							let time = this.getRandValue(1000, 15000)
+							setTimeout(() => {
+								if (parseInt(snow.style.top) >= parseInt(this.maxTop)) {
+									snow.style.transition = "none"
+									snow.style.top = "-10%"
+									setTimeout(() => {
+										console.log(parseInt(snow.style.top))
+										snow.style.transition = "top 8s linear"
+									}, 100)
+								} else {
+									snow.style.top = this.maxTop
+								}
+							}, time)
+						})
+					}, 2000)
+				}
+			}
+			window.onload = function () {
+				let snowClass = new Snow(100, 3, 15, 10, 100, "98%")
+				snowClass.createSow()
+			}
+		</script>
+	</body>
+</html>

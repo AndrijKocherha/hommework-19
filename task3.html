@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/nullstyle.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>task3</title>
+	</head>
+	<body>
+		<main class="page">
+			<div class="page__container">
+				<div class="task">
+					<div class="task__condition text">
+						Задача 4. Дано 3 таблиці розмірності 3*3 з випадковими числами. Якщо відбувається клік на якійсь із клітинок, то до відповідної таблиці додається червона
+						рамка (спробуйте додати можливість відображення кількості кліків біля назви таблиці з використанням відповідно доданого для цього атрибута).
+					</div>
+				</div>
+				<div class="example">
+					<div class="example__chart"></div>
+					<div class="example__chart"></div>
+					<div class="example__chart"></div>
+				</div>
+				<script>
+					class Сhart {
+						static chartCount = 1
+						constructor(columnsAmount, linesAmount, chartContainer, countBody) {
+							this.columnsAmount = columnsAmount
+							this.linesAmount = linesAmount
+							this.chartContainer = chartContainer
+							//this.countBody = countBody
+						}
+						getRandNum(minNum, maxNum) {
+							return minNum + Math.floor(Math.random() * (maxNum - minNum + 1))
+						}
+						createChart() {
+							this.table = document.createElement("table")
+							for (let i = 0; i < this.linesAmount; i++) {
+								let line = document.createElement("tr")
+								for (let j = 0; j < this.columnsAmount; j++) {
+									let column = document.createElement("td")
+									column.innerText = `${this.getRandNum(1, 100)}`
+									line.append(column)
+								}
+								this.table.append(line)
+							}
+							let chartHeader = document.createElement("div")
+							chartHeader.className = "example__click"
+							let chartName = document.createElement("div")
+							chartName.innerText = `Таблиця номер ${Сhart.chartCount}`
+							chartHeader.prepend(chartName)
+							this.countBody = document.createElement("div")
+							chartHeader.prepend(this.countBody)
+							this.chartContainer.prepend(chartHeader)
+							this.chartContainer.append(this.table)
+							//якщо по умові на кожнуклітинку відслітковувати клік
+							for (const td of this.table.querySelectorAll("td")) {
+								td.onclick = Сhart.setSettings.bind(this)
+							}
+							// на всю таблицю
+							//this.table.onclick = Сhart.setSettings.bind(this)
+							this.count = 0
+							Сhart.chartCount++
+						}
+						static setSettings() {
+							this.count++
+							this.countBody.innerText = `${this.count}`
+							if (this.count % 2 == 0) this.table.style.border = "1px solid transparent"
+							else this.table.style.border = "1px solid red"
+						}
+						getBorder() {}
+					}
+					window.onload = function () {
+						//document.getElementById("coun1")
+						let charts = document.querySelectorAll(".example__chart")
+						let newChart = new Сhart(3, 3, charts[0])
+						newChart.createChart()
+						//document.getElementById("coun2")
+						let newChartTwo = new Сhart(3, 3, charts[1])
+						newChartTwo.createChart()
+						let newChartThree = new Сhart(3, 3, charts[2])
+						newChartThree.createChart()
+					}
+				</script>
+			</div>
+		</main>
+	</body>
+</html>

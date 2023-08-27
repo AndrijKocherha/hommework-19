@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/nullstyle.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>task1</title>
+	</head>
+	<body>
+		<main class="page">
+			<div class="page__container">
+				<div class="task">
+					<div class="task__condition text">
+						Задача 2. Дано 5 елементів input. При введенні значення у якийсь із них необхідно автоматично заповнювати інші (усі попередні у спадному порядку(кожен
+						попередній має значення на 1 менше за наступний), усі наступні на 1 більше (кожен наступне на 1 більше за попереднього)
+					</div>
+				</div>
+				<div class="example">
+					<label>
+						Value 1
+						<input type="number" />
+					</label>
+					<label>
+						Value 2
+						<input type="number" />
+					</label>
+					<label>
+						Value 3
+						<input type="number" />
+					</label>
+					<label>
+						Value 4
+						<input type="number" />
+					</label>
+					<label>
+						Value 5
+						<input type="number" />
+					</label>
+				</div>
+			</div>
+		</main>
+		<script>
+			class FillInputs {
+				constructor(inputs) {
+					this.inputs = inputs
+				}
+				fillInputs(curinput) {
+					let curInput = curinput
+					let curLable = curInput.parentElement
+					let nextLabel = curLable.nextElementSibling
+					while (nextLabel && nextLabel.querySelector("input")) {
+						nextLabel.querySelector("input").value = parseInt(curLable.querySelector("input").value) + 1
+						curLable = nextLabel
+						nextLabel = nextLabel.nextElementSibling
+					}
+					curLable = curInput.parentElement
+					let prevLabel = curLable.previousElementSibling
+					console.log(prevLabel)
+					console.log(curLable)
+					while (prevLabel && prevLabel.querySelector("input")) {
+						prevLabel.querySelector("input").value = parseInt(curLable.querySelector("input").value) - 1
+						curLable = prevLabel
+						prevLabel = prevLabel.previousElementSibling
+					}
+				}
+				condition() {
+					if (this.inputs) {
+						for (const input of this.inputs) {
+							input.oninput = () => this.fillInputs(input)
+						}
+					}
+				}
+			}
+
+			window.onload = function () {
+				let inputs = document.querySelectorAll("input")
+				//console.log(lables)
+				let newFill = new FillInputs(inputs)
+				newFill.condition()
+			}
+		</script>
+	</body>
+</html>

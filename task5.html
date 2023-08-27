@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/nullstyle.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>task5</title>
+	</head>
+	<body>
+		<main class="page">
+			<div class="page__container">
+				<div class="task">
+					<div class="task__condition text">
+						Задача 6. Дано список спортсменів. Потрібно сформувати список тих, які будуть брати участь у змаганні. При цьому є два стовпці. В одному відображені всі
+						спортсмени, в іншому – список тих, хто був вибраний. При натисканні на зелену стрілку спортсмен переміщається у список для змагань. При натисканні на червону
+						стрілку спортсмен переміщається у загальний список.
+					</div>
+				</div>
+				<div class="lists">
+					<div class="lists__list lists__list_all">
+						<div class="lists__sportsmen sportsmen">
+							<div class="sportsmen__name">Sportsmen Ivan</div>
+							<div class="sportsmen__image"><img src="img/right-arr.png" alt="" /></div>
+						</div>
+						<div class="lists__sportsmen sportsmen">
+							<div class="sportsmen__name">Sportsmen Taras</div>
+							<div class="sportsmen__image"><img src="img/right-arr.png" alt="" /></div>
+						</div>
+						<div class="lists__sportsmen sportsmen">
+							<div class="sportsmen__name">Sportsmen Petro</div>
+							<div class="sportsmen__image"><img src="img/right-arr.png" alt="" /></div>
+						</div>
+						<div class="lists__sportsmen sportsmen">
+							<div class="sportsmen__name">Sportsmen Illia</div>
+							<div class="sportsmen__image"><img src="img/right-arr.png" alt="" /></div>
+						</div>
+						<div class="lists__sportsmen sportsmen">
+							<div class="sportsmen__name">Sportsmen Andri</div>
+							<div class="sportsmen__image"><img src="img/right-arr.png" alt="" /></div>
+						</div>
+					</div>
+					<div class="lists__list lists__list_competition"></div>
+				</div>
+			</div>
+		</main>
+		<script>
+			class Spotstmens {
+				constructor(image, allSportsmensList, selectedList) {
+					this.image = image
+					this.allSportsmensList = allSportsmensList
+					this.selectedList = selectedList
+				}
+				sortSportsmens() {
+					let sportsmen = this.image.closest(".sportsmen")
+					sportsmen.classList.toggle("_selected-sportsmen")
+					if (!sportsmen.classList.contains("_selected-sportsmen")) {
+						this.allSportsmensList.append(sportsmen)
+						this.image.querySelector("img").src = "img/right-arr.png"
+					} else {
+						this.selectedList.append(sportsmen)
+						this.image.querySelector("img").src = "img/left-arr.png"
+					}
+				}
+			}
+			window.onload = function () {
+				let images = document.querySelectorAll(".sportsmen__image")
+				let allSportsmensList = document.querySelector(".lists__list_all")
+				let selectedList = document.querySelector(".lists__list_competition")
+
+				for (const image of images) {
+					let sportsmensClass = new Spotstmens(image, allSportsmensList, selectedList)
+					image.onclick = () => sportsmensClass.sortSportsmens()
+				}
+			}
+
+			//function sortSportsmens(image) {
+			//	let sportsmen = image.closest(".sportsmen")
+			//	sportsmen.classList.toggle("_selected-sportsmen")
+			//	let allSportsmensList = document.querySelector(".lists__list_all")
+			//	let selectedList = document.querySelector(".lists__list_competition")
+			//	if (!sportsmen.classList.contains("_selected-sportsmen")) {
+			//		allSportsmensList.append(sportsmen)
+			//		image.querySelector("img").src = "img/right-arr.png"
+			//	} else {
+			//		selectedList.append(sportsmen)
+			//		image.querySelector("img").src = "img/left-arr.png"
+			//	}
+			//}
+
+			//window.onload = function () {
+			//	let images = document.querySelectorAll(".sportsmen__image")
+			//	//let allSportsmensList = document.querySelector(".lists__list_all")
+			//	//let selectedList = document.querySelector(".lists__list_competition")
+			//	for (const image of images) {
+			//		image.onclick = () => sortSportsmens(image)
+			//	}
+			//}
+		</script>
+	</body>
+</html>

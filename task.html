@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/nullstyle.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>task0</title>
+	</head>
+	<body>
+		<main class="page">
+			<div class="page__container">
+				<div class="task">
+					<div class="task__condition text">
+						Задача 1. Дано 10 рядків тексту «Hello!» у окремих div. При кліку на якийсь із них усі наступні повинні бути зафарбовані у червоний колір.
+					</div>
+				</div>
+				<div class="example">
+					<!--<div>Hello!</div>
+					<div>Hello!</div>
+					<div>Hello!</div>
+					<div>Hello!</div>
+					<div>Hello!</div>
+					<div>Hello!</div>
+					<div>Hello!</div>
+					<div>Hello!</div>
+					<div>Hello!</div>
+					<div>Hello!</div>-->
+				</div>
+			</div>
+		</main>
+		<script>
+			//class ColorizeNextElements {
+			//	constructor() {}
+			//	paint(color, el) {
+			//		let curDiv = el
+			//		console.log(curDiv)
+			//		while (curDiv.nextElementSibling) {
+			//			curDiv = curDiv.nextElementSibling
+			//			curDiv.style.color = color
+			//		}
+			//	}
+			//}
+			//window.onload = function () {
+			//	let paintNextEl = new ColorizeNextElements()
+			//	for (const el of document.querySelectorAll(".example div")) {
+			//		el.onclick = () => paintNextEl.paint("red", el)
+			//	}
+			//}
+			//============================================================================================
+			//зі створення усього вмісту в класі *****
+			class ColorizeNextElements {
+				constructor(text, el, elAmount, container) {
+					this.text = text
+					this.el = el
+					this.elAmount = elAmount
+					this.container = container
+				}
+				paint(el) {
+					while (el.nextElementSibling) {
+						el.nextElementSibling.style.color = "red"
+						el = el.nextElementSibling
+					}
+				}
+				render() {
+					if (this.container) {
+						for (let i = 0; i < this.elAmount; i++) {
+							this.newEl = document.createElement(this.el)
+							this.newEl.innerText = this.text
+							this.container.append(this.newEl)
+							//this.newEl.onclick = this.paint
+						}
+						for (const el of document.querySelectorAll(this.el)) {
+							el.onclick = () => this.paint(el)
+						}
+					}
+				}
+			}
+			window.onload = function () {
+				let colorize = new ColorizeNextElements("Hello", "div", 10, document.querySelector(".example"))
+				colorize.render()
+			}
+		</script>
+	</body>
+</html>

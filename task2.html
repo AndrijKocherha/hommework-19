@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/nullstyle.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>task2</title>
+	</head>
+	<body>
+		<main class="page">
+			<div class="page__container">
+				<div class="task">
+					<div class="task__condition text">
+						Задача 3. Дано 5 випадковим чином згенерованих нумерованих списків з рандомними числами (кількість елементів у списку випадкова від 1 до 10, елементи
+						випадкові – від 1 до 100). При натисненні на кнопку нумеровані списки з парною кількістю елементів зафарбувати у зелений колір, інші у червоний.
+					</div>
+				</div>
+				<div class="example">
+					<button class="example__button button">Створити та пофарбуват</button>
+				</div>
+				<script>
+					class List {
+						constructor(listsCount, minLicount, maxLiCount, container, button) {
+							this.listsCount = listsCount
+							this.minLicount = minLicount
+							this.maxLiCount = maxLiCount
+							this.container = container
+							this.button = button
+						}
+						createList(minValue, maxValue) {
+							for (let i = 0; i < this.listsCount; i++) {
+								let newUl = document.createElement("ul")
+								let randLiCount = this.minLicount + Math.floor(Math.random() * (this.maxLiCount - this.minLicount + 1))
+								for (let i = 0; i < randLiCount; i++) {
+									let randLiValue = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+									let newLi = document.createElement("li")
+									newLi.innerText = `${randLiValue}`
+									newUl.append(newLi)
+								}
+								this.container.append(newUl)
+							}
+							this.button.onclick = this.paintLists.bind(this)
+						}
+						paintLists() {
+							for (const ul of this.container.querySelectorAll("ul")) {
+								if (ul.querySelectorAll("li").length % 2 === 0) ul.style.backgroundColor = "green"
+								else ul.style.backgroundColor = "red"
+							}
+						}
+					}
+					window.onload = function () {
+						let newList = new List(5, 1, 10, document.querySelector(".example"), document.querySelector(".example__button"))
+						newList.createList(1, 100)
+					}
+				</script>
+			</div>
+		</main>
+	</body>
+</html>

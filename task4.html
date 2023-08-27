@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/nullstyle.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>task4</title>
+	</head>
+	<body>
+		<main class="page">
+			<div class="page__container">
+				<div class="task">
+					<div class="task__condition text">
+						Задача 5. Відображаємо картки товарів, які користувач може вибирати. Вибраний товар має зелену рамку (при кліку робити toogle з класом вибраного елемента)
+					</div>
+				</div>
+				<div class="cards">
+					<div class="cards__card card">
+						<div class="card__banners">
+							<div class="banners__top">Топ Продаж</div>
+						</div>
+						<div class="card__image"><img src="img/01.jpg" alt="" /></div>
+
+						<div class="card__lable">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, reprehenderit laboriosam nisi, amet odio excepturi aut velit earum quas voluptas possimus?
+						</div>
+						<div class="card__prices">
+							<div class="card__cur-price">49000</div>
+							<div class="card__ald-price">50000</div>
+						</div>
+					</div>
+					<div class="cards__card card">
+						<div class="card__banners">
+							<div class="banners__action">Акція</div>
+						</div>
+						<div class="card__image"><img src="img/02.jpg" alt="" /></div>
+
+						<div class="card__lable">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, quos?</div>
+						<div class="card__prices">
+							<div class="card__cur-price">36000</div>
+						</div>
+					</div>
+					<div class="cards__card card">
+						<div class="card__banners">
+							<div class="banners__top">Топ Продаж</div>
+							<div class="banners__action">Акція</div>
+						</div>
+						<div class="card__image"><img src="img/03.jpg" alt="" /></div>
+
+						<div class="card__lable">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, quos?</div>
+						<div class="card__prices">
+							<div class="card__cur-price">47999</div>
+							<div class="card__ald-price">55000</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<script>
+			function makeBorder(card) {
+				card.classList.toggle("_border")
+
+				if (!card.classList.contains("_border")) {
+					card.style.outline = "3px solid transparent"
+				} else card.style.outline = "3px solid green"
+			}
+			window.onload = function () {
+				let allCards = document.querySelectorAll(".cards__card")
+				for (const card of allCards) {
+					card.onclick = () => makeBorder(card)
+				}
+			}
+		</script>
+	</body>
+</html>
